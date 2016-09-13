@@ -7,6 +7,12 @@ describe("Take Off", function(){
   beforeEach(function(){
     airport = new Airport();
     plane = new Plane();
+    bad_weather = {
+      isStormy: true
+    };
+    good_weather = {
+      isStormy: false
+    };
   });
 
   it("a plane can take off from an airport", function(){
@@ -18,9 +24,9 @@ describe("Take Off", function(){
   it('prevents take off when weather is stormy', function () {
     plane.land_at(airport);
 
-    while (bad_weather.isStormy == false) {
-      bad_weather = new Weather();
-    }
+    // while (bad_weather.isStormy == false) {
+    //   bad_weather = new Weather();
+    // }
 
     if (weather.isStormy === true) {
       expect(plane.take_off()).toThrowError("Weather is stormy.");
