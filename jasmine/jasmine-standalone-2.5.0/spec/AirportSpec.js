@@ -23,4 +23,12 @@ describe("Airport", function() {
     });
   });
 
+  describe("release_plane", function(){
+    it("removes plane from _hanger", function(){
+      airport.accept_plane(plane);
+      airport.release_plane(plane);
+      expect(airport.planes()).not.toContain(plane);
+    });
+  });
+
 });
