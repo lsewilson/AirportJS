@@ -25,19 +25,19 @@ describe("Plane", function() {
     });
   });
 
-  describe("take_off_from", function() {
+  describe("take_off", function() {
 
     beforeEach(function(){
       plane.land_at(airport);
     });
 
     it("changes plane to being not in air to in air", function(){
-      plane.take_off_from(airport);
+      plane.take_off();
       expect(plane.isInAir).toBe(true);
     });
 
     it("calls release_plane", function(){
-      plane.take_off_from(airport);
+      plane.take_off();
       expect(airport.release_plane).toHaveBeenCalled();
     });
   });
