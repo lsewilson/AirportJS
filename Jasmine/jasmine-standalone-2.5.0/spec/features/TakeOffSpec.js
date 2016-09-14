@@ -1,41 +1,31 @@
 describe("Take Off", function(){
   var plane;
   var airport;
-  var bad_weather;
-  var good_weather;
+  var weather;
 
   beforeEach(function(){
-    airport = new Airport();
+    weather = {
+      isStormy: function(){}
+    };
+    airport = new Airport(weather);
     plane = new Plane();
-    bad_weather = {
-      isStormy: true
-    };
-    good_weather = {
-      isStormy: false
-    };
   });
 
-  it("a plane can take off from an airport", function(){
+  it("a plane can take off from an airport in good weather", function(){
     plane.land_at(airport);
-    plane.take_off_from(airport);
+    plane.take_off();
     expect(airport.planes()).toEqual([]);
   });
 
   it('prevents take off when weather is stormy', function () {
+    spyOn(Math, 'random').and.returnValue(1);
     plane.land_at(airport);
-
-    // while (bad_weather.isStormy == false) {
-    //   bad_weather = new Weather();
-    // }
-
-    if (weather.isStormy === true) {
-      expect(plane.take_off()).toThrowError("Weather is stormy.");
-    }
-    else {
-      plane.take
-      expect(plane.take_off()).not.toThrowError();
-    }
-
-
+    spyOn(weather,'isStormy').and.returnValue(true); // !!!!!!!
+    expect(function() {plane.take_off();}).toThrow(new Error('cannot take off during storm'));
   });
 });
+
+// expect(parser.parse(raw)).toThrow(new Error("Parsing is not possible"));
+//
+//
+// expect( function(){ parser.parse(raw); } ).toThrow(new Error("Parsing is not possible"));

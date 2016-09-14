@@ -5,13 +5,13 @@ describe("Airport", function() {
 
   beforeEach(function() {
     airport = new Airport();
-    plane =  jasmine.createSpyObj('plane', ['land_at']);
+    plane =  jasmine.createSpyObj('plane', ['land_at', 'take_off']);
   });
 
   describe("accept_plane", function() {
     it("accepts a plane when given one", function() {
       airport.accept_plane(plane);
-      expect(airport._hanger).toContain(plane);
+      expect(airport._hangar).toContain(plane);
     });
   });
 

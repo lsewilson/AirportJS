@@ -1,5 +1,5 @@
 function Weather(){}
 
 Weather.prototype.isStormy = function () {
-  return Math.floor((Math.random() * 10) + 1) === 2;
+  return (Math.random() <= 0.1);
 };
