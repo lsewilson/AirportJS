@@ -31,4 +31,26 @@ describe("Airport", function() {
     });
   });
 
+  describe('capacity', function() {
+    var smallAirport;
+    var weather;
+    beforeEach(function() {
+      smallAirport = new Airport(weather, 10);
+      plane =  jasmine.createSpyObj('plane', ['land_at', 'take_off']);
+    });
+    it('raises error when trying to land when airport is full', function() {
+      for (var i = 0; i < airport._capacity; i++) {
+        airport.accept_plane(plane);
+      }
+      var msg = 'Airport currently at capacity';
+      expect(function() {airport.accept_plane(plane);}).toThrow(new Error(msg));
+    });
+    it('has a default capacity', function() {
+      expect(airport._capacity).toEqual(20);
+    });
+    it('can be set a capacity', function() {
+      expect(smallAirport._capacity).toEqual(10);
+    });
+  });
+
 });

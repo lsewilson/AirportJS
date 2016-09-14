@@ -1,5 +1,6 @@
-
-function Airport(weather){
+function Airport(weather, capacity){
+  defaultCapacity: var DEFAULT_CAPACITY = 20;
+  this._capacity = (typeof capacity !== 'undefined') ? capacity : DEFAULT_CAPACITY;
   this._hangar = [];
   this._weather = (typeof weather !== 'undefined') ? weather : new Weather();
 }
@@ -7,6 +8,9 @@ function Airport(weather){
 Airport.prototype.accept_plane = function (plane) {
   if (this._weather.isStormy() === true) {
     throw new Error('cannot land during storm');
+  }
+  if (this._hangar.length >= this._capacity) {
+    throw new Error('Airport currently at capacity');
   }
   this._hangar.push(plane);
 };
