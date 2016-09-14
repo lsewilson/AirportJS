@@ -12,7 +12,9 @@ describe("Take Off", function(){
   });
 
   it("a plane can take off from an airport in good weather", function(){
+    spyOn(Math, 'random').and.returnValue(1);
     plane.land_at(airport);
+    spyOn(weather,'isStormy').and.returnValue(false);
     plane.take_off();
     expect(airport.planes()).toEqual([]);
   });
@@ -20,12 +22,7 @@ describe("Take Off", function(){
   it('prevents take off when weather is stormy', function () {
     spyOn(Math, 'random').and.returnValue(1);
     plane.land_at(airport);
-    spyOn(weather,'isStormy').and.returnValue(true); // !!!!!!!
+    spyOn(weather,'isStormy').and.returnValue(true);
     expect(function() {plane.take_off();}).toThrow(new Error('cannot take off during storm'));
   });
 });
-
-// expect(parser.parse(raw)).toThrow(new Error("Parsing is not possible"));
-//
-//
-// expect( function(){ parser.parse(raw); } ).toThrow(new Error("Parsing is not possible"));

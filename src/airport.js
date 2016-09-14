@@ -1,5 +1,5 @@
 function Airport(weather, capacity){
-  defaultCapacity: var DEFAULT_CAPACITY = 20;
+  var DEFAULT_CAPACITY = 20;
   this._capacity = (typeof capacity !== 'undefined') ? capacity : DEFAULT_CAPACITY;
   this._hangar = [];
   this._weather = (typeof weather !== 'undefined') ? weather : new Weather();
@@ -26,7 +26,3 @@ Airport.prototype.release_plane = function(plane, weather) {
   var index = this._hangar.indexOf(plane);
   this._hangar.splice(index,1);
 };
-
-
-
-// var weather =
